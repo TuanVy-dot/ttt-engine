@@ -1,0 +1,34 @@
+[1;32mCompiler:[0m [34mgcc[0m | [1;32mLogfile:[0m [34mtests//logs.txt[0m | [1;32mLD_LIBRARY_PATH:[0m [34m[0m | [1;32moutput:[0m [34mstdout[0m
+[1;33mFile:[0m [34mtests/test_board_isValid.c[0m
+[1;33mOutFile:[0m [34mtest_board_isValid.c.out[0m
+File executed successfully with exit code 0
+[1;33mEnd[0m [34mtests/test_board_isValid.c [0m [1;32m success 0[0m
+
+[1;33mFile:[0m [34mtests/test_board_isValidMove.c[0m
+[1;33mOutFile:[0m [34mtest_board_isValidMove.c.out[0m
+File executed successfully with exit code 0
+[1;33mEnd[0m [34mtests/test_board_isValidMove.c [0m [1;32m success 0[0m
+
+[1;33mFile:[0m [34mtests/test_board_isFull.c[0m
+[1;33mOutFile:[0m [34mtest_board_isFull.c.out[0m
+File executed successfully with exit code 0
+[1;33mEnd[0m [34mtests/test_board_isFull.c [0m [1;32m success 0[0m
+
+[1;33mFile:[0m [34mtests/test_board_checkWin.c[0m
+[1;33mOutFile:[0m [34mtest_board_checkWin.c.out[0m
+File executed successfully with exit code 0
+[1;33mEnd[0m [34mtests/test_board_checkWin.c [0m [1;32m success 0[0m
+
+[1;33mFile:[0m [34mtests/test_eval_HaveM1.c[0m
+[1;33mOutFile:[0m [34mtest_eval_HaveM1.c.out[0m
+File executed successfully with exit code 0
+[1;33mEnd[0m [34mtests/test_eval_HaveM1.c [0m [1;32m success 0[0m
+
+:
+[1;33mtest_board_isValid.c.out [1;32m success 0[0m
+[1;33mtest_board_isValidMove.c.out [1;32m success 0[0m
+[1;33mtest_board_isFull.c.out [1;32m success 0[0m
+[1;33mtest_board_checkWin.c.out [1;32m success 0[0m
+[1;33mtest_eval_HaveM1.c.out [1;32m success 0[0m
+
+[1;33mTotal:[0m 5 | [1;32mSuccess:[0m 5
