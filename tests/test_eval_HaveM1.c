@@ -24,7 +24,7 @@ void test_eval_HaveM1_X_Win() {
     board.player_turn = X_PLAYER;
 
     // X should have a potential "M1" (winning move) in the top row
-    assert(eval_HaveM1(board) == true); 
+    assert(eval_HaveM1(board, board.player_turn) == true); 
 }
 
 // Test Case 2: Check if 'M1' is detected when the current player is O and has a winning move
@@ -37,7 +37,7 @@ void test_eval_HaveM1_O_Win() {
     board.player_turn = O_PLAYER;
 
     // O should have a potential "M1" (winning move) in the top row
-    assert(eval_HaveM1(board) == true); 
+    assert(eval_HaveM1(board, board.player_turn) == true); 
 }
 
 // Test Case 3: No "M1" scenario (no winning move possible for current player)
@@ -50,7 +50,7 @@ void test_eval_HaveM1_No_Win() {
     board.player_turn = X_PLAYER;
 
     // No winning move for X
-    assert(eval_HaveM1(board) == false); 
+    assert(eval_HaveM1(board, board.player_turn) == false); 
 }
 
 // Test Case 4: Check if the function works when the board is empty (no moves made yet)
@@ -63,7 +63,7 @@ void test_eval_HaveM1_Empty_Board() {
     board.player_turn = X_PLAYER;
 
     // No moves, so no "M1" for either player
-    assert(eval_HaveM1(board) == false); 
+    assert(eval_HaveM1(board, board.player_turn) == false); 
 }
 
 // Test Case 5: Check if the function detects an "M1" when player turn is O
@@ -76,7 +76,7 @@ void test_eval_HaveM1_O_Turn() {
     board.player_turn = O_PLAYER;
 
     // O should have an "M1" (winning move)
-    assert(eval_HaveM1(board) == true);
+    assert(eval_HaveM1(board, board.player_turn) == true);
 }
 
 int main() {

@@ -1,3 +1,0 @@
-/data/data/com.termux/files/home/storage/Programming/C/tic-tac-toe-ai/build/CMakeFiles/engine.dir
-/data/data/com.termux/files/home/storage/Programming/C/tic-tac-toe-ai/build/CMakeFiles/edit_cache.dir
-/data/data/com.termux/files/home/storage/Programming/C/tic-tac-toe-ai/build/CMakeFiles/rebuild_cache.dir

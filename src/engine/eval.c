@@ -46,121 +46,85 @@ bool eval_HaveM1(Board board, cell_Value player_turn) {
     if (!player_turn) {
         return false; // is blank, we don't want that
     }
-    uint32_t count;
     for (int i = 0; i < 3; i++) {
-        count = 0;
-        for (int j = 0; j < 3; j++) {
-            if ((board.cells)[i][j] == player_turn) {
-                count++;
-            } else if ((board.cells)[i][j] != BLANK_CELL) {
-                count = 0; // don't care about it anymore
-                break; // it means there is opponent mark already in this row
-            }
-        }
-        if (count == 2) {
+        if (eval_isPotentialWin(
+                (board.cells)[i][0],
+                (board.cells)[i][1],
+                (board.cells)[i][2],
+                player_turn
+            )
+        ) {
             return true;
         }
     }
 
     for (int j = 0; j < 3; j++) {
-        count = 0;
-        for (int i = 0; i < 3; i++) {
-            if ((board.cells)[i][j] == board.player_turn) {
-                count++;
-            } else if ((board.cells)[i][j] != BLANK_CELL) {
-                count = 0; // don't care about it anymore
-                break; // it means there is opponent mark already in this col
-            }
-        }
-        if (count == 2) {
-            return true;
+        if (eval_isPotentialWin(
+                (board.cells)[0][j],
+                (board.cells)[1][j],
+                (board.cells)[2][j],
+                player_turn
+            )
+        ) {
+            return 1;
         }
     }
 
-    count = 0;
-    for (int i = 0; i < 3; i++) {
-        if ((board.cells)[i][i] == player_turn) {
-            count ++;
-        } else if ((board.cells)[i][i] != BLANK_CELL) {
-            count = 0;
-            break;
-        }
-    }
-    if (count == 2) {
+    if (eval_isPotentialWin(
+            (board.cells)[0][0],
+            (board.cells)[1][1],
+            (board.cells)[2][2],
+            player_turn
+        ) || 
+        eval_isPotentialWin(
+            (board.cells)[0][2],
+            (board.cells)[1][1],
+            (board.cells)[2][0],
+            player_turn
+        )
+    ) {
         return true;
     }
 
-    count = 0;
-    for (int i = 0; i < 3; i++) {
-        if ((board.cells)[i][2 - i] == player_turn) {
-            count ++;
-        } else if ((board.cells)[i][2 - i] != BLANK_CELL) {
-            count = 0;
-            break;
-        }
-    }
-    if (count == 2) {
-        return true;
-    }
     return false;
 }
 
-/* Check for M2 for the opponent of board.player_turn
- * BLANK_CELL else
- * it is undefined if the game has ended 
- */
-cell_Value eval_HaveM2(Board board) {
+/* Check if player_turn is giving the opponent multi-threats
+ * It's a win immediately with M2 if the opponent don't have M1 */
+bool eval_HaveM2(Board board, cell_Value player_turn) {
     uint32_t count_potential_win = 0;
     for (int i = 0; i < 3; i++) {
         count_potential_win +=  eval_isPotentialWin(
                                     (board.cells)[i][0],
                                     (board.cells)[i][1],
                                     (board.cells)[i][2], 
-                                    opponent_of(board.player_turn)
+                                    player_turn
         );
     }
 
     for (int j = 0; j < 3; j++) {
-        count = 0;
-        for (int i = 0; i < 3; i++) {
-            if ((board.cells)[i][j] == board.player_turn) {
-                count++;
-            } else if ((board.cells)[i][j] != BLANK_CELL) {
-                count = 0; // don't care about it anymore
-                break; // it means there is opponent mark already in this col
-            }
-        }
-        if (count == 2) {
-            return true;
-        }
+        count_potential_win +=  eval_isPotentialWin(
+                                    (board.cells)[0][j],
+                                    (board.cells)[1][j],
+                                    (board.cells)[2][j], 
+                                    player_turn
+        );
     }
 
-    count = 0;
-    for (int i = 0; i < 3; i++) {
-        if ((board.cells)[i][i] == board.player_turn) {
-            count ++;
-        } else if ((board.cells)[i][i] != BLANK_CELL) {
-            count = 0;
-            break;
-        }
-    }
-    if (count == 2) {
-        return true;
-    }
+    count_potential_win +=  eval_isPotentialWin(
+                                (board.cells)[0][0],
+                                (board.cells)[1][1],
+                                (board.cells)[2][2], 
+                                player_turn
+    );
+    count_potential_win +=  eval_isPotentialWin(
+                                (board.cells)[0][2],
+                                (board.cells)[1][1],
+                                (board.cells)[2][0], 
+                                player_turn
+    );
 
-    count = 0;
-    for (int i = 0; i < 3; i++) {
-        if ((board.cells)[i][2 - i] == board.player_turn) {
-            count ++;
-        } else if ((board.cells)[i][2 - i] != BLANK_CELL) {
-            count = 0;
-            break;
-        }
-    }
-    if (count == 2) {
-        return true;
-    }
-    return false;
+    return count_potential_win >= 2;
 }
 
 /* Check if the three cell values are a in lined two

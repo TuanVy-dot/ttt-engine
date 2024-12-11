@@ -97,6 +97,7 @@ int32_t board_play(Board *board, struct board_Pos pos) {
         return 1;
     }
     (board -> cells)[pos.row][pos.col] = board -> player_turn;
+    board -> player_turn = opponent_of(board -> player_turn);
     return 0;
 }
 
@@ -113,6 +114,7 @@ Board board_playC(Board board, struct board_Pos pos) {
     if (board_play(&board, pos) == 1) {
         board.player_turn = BLANK_CELL;
     }
+    board.player_turn = opponent_of(board.player_turn);
     return board;
 }
 
