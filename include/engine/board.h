@@ -7,7 +7,7 @@
 
 /* The opponent_of operator return opponent of a player
  * Should not be use for other values beyond 1 and 2 */
-#define opponent_of(p) p ^ 3
+#define opponent_of(p) (p ^ 3)
 
 enum cell_Value {
     BLANK_CELL, X_PLAYER, O_PLAYER
@@ -66,5 +66,7 @@ Board board_putC(Board board, struct board_Pos pos, cell_Value val);
 Board board_playC(Board board, struct board_Pos pos);
 /* Copy cells into board.cells */
 void board_set(Board *board, cell_Value cells[9]);
+uint32_t board_getBlankPos(Board board, struct board_Pos blanks[9]);
+void board_print(Board board);
 
 #endif

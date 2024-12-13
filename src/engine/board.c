@@ -114,10 +114,31 @@ Board board_playC(Board board, struct board_Pos pos) {
     if (board_play(&board, pos) == 1) {
         board.player_turn = BLANK_CELL;
     }
-    board.player_turn = opponent_of(board.player_turn);
     return board;
 }
 
 void board_set(Board *board, cell_Value cells[9]) {
     memcpy(board -> cells, cells, 9 * sizeof(cell_Value));
+}
+
+/* Get every blank cells position, return number of them */
+uint32_t board_getBlankPos(Board board, struct board_Pos blanks[9]) {
+    uint32_t top = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if ((board.cells)[i][j] == BLANK_CELL) {
+                blanks[top].row = i;
+                blanks[top].col = j;
+                top++;
+            }
+        }
+    }
+    return top;
+}
+
+void board_print(Board board) {
+    printf("player_turn: %d\n", board.player_turn);
+    for (int32_t i = 0; i < 3; i++) {
+        printf("%d %d %d\n", (board.cells)[i][0], (board.cells)[i][1], (board.cells)[i][2]);
+    }
 }
